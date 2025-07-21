@@ -1,0 +1,71 @@
+---
+description: A structured framework for task management, including sections for relevant files, a hierarchical task list, and guidelines for implementing tasks with user approval. It also provides a completion protocol and instructions for dynamically updating the task list to ensure clarity and accountability.
+globs:
+alwaysApply: false
+---
+
+## Output Format
+The generated task list must follow this structure:
+
+### Relevant Files/Context
+- List the .md or .mdc files used in making your plan
+- Add an optional list of additional content you think can assist if provided by the user - try to minimize work for the user unless this is very crucial or hard for you to fetch using your own tools
+- List all the generated outputs as part of the plan
+
+### Tasks list structure
+- [ ] 1.0 Parent Task Title
+    - [ ] 1.1 [Sub-task description 1.1]
+    - [ ] 1.2 [Sub-task description 1.2]
+- [ ] 2.0 Parent Task Title
+    - [ ] 2.1 [Sub-task description 2.1]
+- [ ] 3.0 Parent Task Title (may not require sub-tasks if purely structural or configuration)
+
+## Quality Assurance Integration
+For complex analytical tasks, include these elements:
+- **Assumption validation steps** at task start
+- **Methodology verification** before execution begins
+- **Sample validation** for data analysis tasks (show examples before bulk processing)
+- **Quality checkpoints** at logical phase breakpoints
+- **User approval gates** for significant analytical decisions
+
+### Enhanced Task Structure Template (for Complex Analysis)
+- [ ] 1.0 Validate Approach & Assumptions
+    - [ ] 1.1 Surface and validate assumptions with user
+    - [ ] 1.2 Present methodology for user approval
+    - [ ] 1.3 Show sample decisions if applicable
+- [ ] 2.0 Execute with Quality Checkpoints
+    - [ ] 2.1 [Phase 1 work]
+    - [ ] 2.2 [Quality checkpoint: verify direction before Phase 2]
+    - [ ] 2.3 [Phase 2 work]
+- [ ] 3.0 Verify and Deliver Results
+
+### Task Implementation
+- One sub-task at a time: Do NOT start the next sub‑task until you ask the user for permission and they say "yes" or "y"
+- You can skip asking permission if the user says "always yes" or "-ay" explicitly
+- Completion protocol:
+- When you finish a sub‑task, immediately mark it as completed by changing [ ] to [x].
+- If all subtasks underneath a parent task are now [x], mark the parent task as completed, let the user know and proceed to the next task
+- If all tasks are finished, let the user know and ask what the next task should be
+- Summarize what was accomplished in the parent task
+
+### Task List Maintenance
+- Update the task list as you work:
+    - Mark tasks and subtasks as completed ([x]) per the protocol above.
+    - Add new tasks as they emerge.
+- Maintain the "Relevant Files/Context" section:
+    - List every file created or modified.
+    - Give each file a one‑line description of its purpose.
+- Before starting work, check which sub‑task is next.
+- After implementing a sub‑task, update the file and then pause for user approval.
+- Make sure to always revisit and update the plan according to the user current intent. For example: 
+    - The user asks help with product research
+    - You device a plan for that
+    - Going over the plan you relaize that the user actually needs help discovering what to focus the research on
+    - Update the plan so there are relevant steps before the research tasks that assists in that intent (i.e. research focus discovery)
+
+
+## Interaction Model
+The process explicitly requires a pause after generating parent tasks to get user confirmation ("Go") before proceeding to generate the detailed sub-tasks. This ensures the high-level plan aligns with user expectations before diving into details.
+
+## Target Audience
+Assume the primary reader of the task list is a junior PM who will implement the plan.
