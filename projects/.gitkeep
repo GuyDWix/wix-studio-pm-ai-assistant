@@ -1,0 +1,2 @@
+# This file ensures the projects/ folder is tracked by Git
+# The folder structure will exist in the remote repository but contents will be ignored 
