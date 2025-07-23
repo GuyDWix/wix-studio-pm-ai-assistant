@@ -25,6 +25,7 @@ A structured framework system for product management work at Wix Studio. Combine
 3. Reference previous work: `@projects/feature-x/output/` to build on existing insights
 4. Ask the AI to break plans into tasks with `@task-create-task-list` to make sure it works methodically and is not going stray.
 5. Let the AI suggest approaches when exploring options
+6. Add custom rules that are set to your personal perefences in the `@.cursor/rules/persoal` folder.
 
 ### Workflows
 

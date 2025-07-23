@@ -35,12 +35,18 @@ The data structure for this method is organized as such:
 ├──.cursor/rules/
 ├── core/
 │  └── <core behaviour definitions and guidelines>
+├── personal/
+│  └── <personal user created behaviour definitions and guidelines>
 ├── tasks/
 │  └── <instructions and templates for best practice PM tasks>
 ├── projects/
 │  └── <individual scoped projects containing specific context and created artifacts>
 └── shared-knowledge/
     └── <curated PM knowledge resources to use as you see fit>
+
+#### Personal rules
+Users can add their own foundation rules for you to make your behavior and interacting with you suit there personal perference.
+Always start an new conversation by looking at `@.cursor/rules/personal/` folder to see if there are any rules set by the user as additional perefences to how they want you to behave or interact with them. Important: If there are any conflicts between the personal rules and this rule, prefer the personal ones.
 
 #### Task Rules Ecosystem
 You have access to rules for different PM tasks:
