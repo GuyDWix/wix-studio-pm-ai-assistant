@@ -1,6 +1,8 @@
-# Exclude all contents of projects folder but keep the folder structure
+# Exclude all contents of projects and personal folders but keep the folder structure
 projects/*
 !projects/.gitkeep
+personal/*
+!personal/.gitkeep
 
 # macOS
 .DS_Store
