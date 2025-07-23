@@ -19,7 +19,7 @@ This framework is designed to be used with an AI-native IDE like [Cursor](https:
 
 **1. Clone the repository:**
 ```bash
-git clone https://github.com/GuydS/pm-ai-assistant.git
+git clone https://github.com/GuyDWix/wix-studio-pm-ai-assistant.git
 ```
 
 **2. Open the project:**
