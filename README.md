@@ -1,48 +1,72 @@
-# PM AI Assistant - Wix Studio
+# PM AI Assistant
 
-A structured framework system for product management work at Wix Studio. Combines task rules, knowledge base, and workflows to enhance AI-assisted PM activities.
+> ⚠️ This project is currently in its early stages of development.
 
-## Components
+PM AI Assistant is a structured framework system for product management work. It's an agentic tool that lives in your IDE, understands your project context, and helps you with complex PM tasks through natural language commands.
 
-- **Task Rules**: Invoke specific workflows by tagging (`@task-prd-writer`, `@task-research-orchestrator`)
-- **Knowledge Base**: Wix Studio context, PM frameworks, and company insights
-- **Project System**: Reference previous work and build context (`@projects/feature-x/output/`)
-- **Framework Collection**: Strategic, prioritization, development, and metrics methodologies
+## Features
 
-## Capabilities
-
-- **Product Discovery**: User research, opportunity identification, competitive analysis
-- **Requirements & Planning**: PRD writing, feature prioritization (RICE, ICE), roadmap planning  
-- **Strategic Decision-Making**: Framework-driven analysis, risk assessment, trade-off evaluation
-- **Research & Analysis**: Automated synthesis, insight generation, stakeholder reporting
-- **Execution Support**: Task management, progress tracking, stakeholder alignment
-
-## Usage
-
-### Basic Pattern
-1. Tag rules for specific workflows: `@task-prd-writer`, `@task-research-orchestrator`
-2. Add context materials to `projects/[name]/context/` for better results
-3. Reference previous work: `@projects/feature-x/output/` to build on existing insights
-4. Ask the AI to break plans into tasks with `@task-create-task-list` to make sure it works methodically and is not going stray.
-5. Let the AI suggest approaches when exploring options
-6. Add custom rules that are set to your personal perefences in the `@.cursor/rules/persoal` folder.
-
-### Workflows
-
-| Input | Output |
-|-------|--------|
-| `"Use @task-research-orchestrator for [topic]"` | 3-phase research with structured findings |
-| `"Apply @task-prd-writer for [feature]"` | Complete PRD with requirements gathering |
-| `"@task-create-task-list for [initiative]"` | Hierarchical task breakdown with quality checkpoints |
-| `"@task-complex-data-analysis for [data work]"` | Systematic data analysis with validation steps |
-| `"Reference @shared-knowledge/frameworks/ to analyze X"` | Framework-guided analysis |
-
-## Contents
-
-- **Task Rules**: `@task-prd-writer`, `@task-research-orchestrator`, `@task-create-task-list`, `@task-complex-data-analysis`
-- **Knowledge Base**: Wix Studio context, user personas, PM frameworks  
-- **PM Frameworks**: Strategic, Prioritization, Development, Metrics methodologies
+- **🤖 Interactive AI PM Assistant**: A conversational partner to help you navigate complex product management challenges.
+- **⚙️ Task-Driven Workflows**: Invoke specific, pre-defined workflows for common PM tasks like writing PRDs or conducting user research using tags.
+- **📁 Project-Based Context**: Maintain context by referencing previous work and project-specific documents.
+- **🧠 Shared Knowledge Base**: Access a curated collection of PM frameworks, company insights, and user personas.
+- **✏️ Customizable Behavior**: Adapt the assistant's core behavior to your personal preferences by adding your own rules.
+- **📈 Comprehensive PM Capabilities**: Supports the full product lifecycle from discovery and planning to strategic decision-making and execution support.
 
 ## Getting Started
 
-Describe your PM challenge. Tag specific rules and reference context for better results. 
+This framework is designed to be used with an AI-native IDE like [Cursor](https://cursor.sh/).
+
+**1. Clone the repository:**
+```bash
+git clone https://github.com/GuydS/pm-ai-assistant.git
+```
+
+**2. Open the project:**
+Open the `pm-ai-assistant` folder in your AI-native IDE.
+
+**3. Start working:**
+- **To start a new project**, tell the agent:
+  `"let's start a new project for <short_project_desc>"`
+- **To continue an existing project**, tell the agent:
+  `"let's continue with @<tagged_project_folder>"`
+
+## Usage
+
+Interacting with the PM AI Assistant is done through conversation. Here are the main ways to use it:
+
+1.  **Start a conversation**: Simply describe the product management challenge you're facing.
+2.  **Use Task Tags**: To use a specific workflow, tag the relevant task file. For example: `"Use @task-prd-writer for our new feature"`
+3.  **Provide Context**: For better results, add context by tagging files from your project folder (e.g., `@projects/my-project/context/file.md`) or the `@shared-knowledge` base.
+
+### Customization (Change the agent's behavior)
+To avoid manually changing the agent's core foundation rule, you can **save personal rules** that will override the core behavior by adding them as `.mdc` files in the `.cursor/rules/personal/` folder. This allows you to tailor the assistant's personality, and workflows to your specific needs. 
+
+### Project Structure
+
+The project is organized into the following directories to separate concerns and maintain a clear workflow:
+
+```plaintext
+pm-ai-assistant/
+├── .cursor/rules/
+│   ├── core/         # Core behavior definitions and guidelines for the AI assistant.
+│   └── personal/     # Your custom rules to override or extend core behaviors.
+├── projects/         # Contains individual, scoped projects with their own context and outputs.
+│   └── project-name/
+│       ├── context/  # Input materials for the AI.
+│       └── output/   # Artifacts generated by the AI.
+├── shared-knowledge/ # Curated knowledge base for the AI to reference.
+│   ├── frameworks/   # Collection of PM methodologies and decision frameworks.
+│   └── ...           # Other knowledge files (e.g., company fundamentals, user types).
+├── tasks/            # Pre-defined templates and instructions for specific PM tasks.
+└── README.md         # This file.
+```
+
+### Workflows Examples
+
+| Tag | Description |
+| --- | --- |
+| `@task-research-orchestrator` | Initiates a 3-phase research plan with structured findings. |
+| `@task-prd-writer` | Guides you through the process of creating a complete PRD. |
+| `@task-create-task-list` | Creates a detailed, hierarchical task list for any initiative. |
+| `@shared-knowledge/frameworks/` | Helps you apply a specific PM framework for strategic analysis. |
