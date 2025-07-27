@@ -27,6 +27,7 @@ For complex analytical tasks, include these elements:
 - **Sample validation** for data analysis tasks (show examples before bulk processing)
 - **Quality checkpoints** at logical phase breakpoints
 - **User approval gates** for significant analytical decisions
+- **Be explicit with the plan's steps** - make sure it is clear enough from the plan what resources (type and where to look) should be covered, what outputs should be created, and what synthesis should occour during each step along the way.
 
 ### Enhanced Task Structure Template (for Complex Analysis)
 - [ ] 1.0 Validate Approach & Assumptions
