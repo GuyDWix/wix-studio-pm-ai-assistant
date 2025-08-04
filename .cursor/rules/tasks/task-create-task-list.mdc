@@ -1,72 +1,65 @@
 ---
-description: A structured framework for task management, including sections for relevant files, a hierarchical task list, and guidelines for implementing tasks with user approval. It also provides a completion protocol and instructions for dynamically updating the task list to ensure clarity and accountability.
+description: A structured framework for creating strategic project plans. This framework elevates task management from a simple to-do list to a document of strategic intent and methodological rigor.
 globs:
 alwaysApply: false
 ---
 
-## Output Format
-The generated task list must follow this structure:
+## 1. Phase-Level Execution Strategy
+For each major phase (e.g., `1.0`, `2.0`), the AI planner MUST define a `Methodology` block. This forces a deliberate, documented choice on how the phase should be executed.
+
+- [ ] **X.0 Parent Task Title**
+    - **Methodology:**
+        - **Context Protocol:** [Must be one of: `Single Unified Context`, `Fresh Instance per Sub-task`, or `Hybrid`]; If the method is `Hybrid` state the exact specific subtasks that need a new context (e.g. 5.1-5.3 - Unified context; 5.4, 5.5, 5.6 - Fresh context)
+        - **Rationale:** [A single, concise sentence explaining why the protocol was chosen.]
+
+#### Context Protocol Definitions:
+
+*   **`Single Unified Context`:** A single AI instance will perform all sub-tasks in this phase sequentially.
+    *   *Use Case:* For creative or synthesis tasks where retaining context is essential.
+*   **`Fresh Instance per Sub-task`:** Each sub-task will be executed by a new, separate AI instance.
+    *   *Use Case:* For engineering or validation tasks to test artifact integrity and enforce task purity.
+*   **`Hybrid`:** A combination of the above. The instructions for sub-tasks will specify where context should be passed and where it should be reset.
+    *   *Use Case:* For complex phases with mixed creative and technical sub-tasks.
+
+
+## 2. Task List Structure
+
+The task list must be structured hierarchically, with each sub-task containing a formal "Task Brief" to ensure clarity and repeatability.
 
 ### Relevant Files/Context
-- List the .md or .mdc files used in making your plan
-- Add an optional list of additional content you think can assist if provided by the user - try to minimize work for the user unless this is very crucial or hard for you to fetch using your own tools
-- List all the generated outputs as part of the plan
+- List all `.md` files that define the project's strategy and context.
+- List all key artifacts that will be created or modified as part of the plan.
 
-### Tasks list structure
-- [ ] 1.0 Parent Task Title
-    - [ ] 1.1 [Sub-task description 1.1]
-    - [ ] 1.2 [Sub-task description 1.2]
-- [ ] 2.0 Parent Task Title
-    - [ ] 2.1 [Sub-task description 2.1]
-- [ ] 3.0 Parent Task Title (may not require sub-tasks if purely structural or configuration)
+### Task Hierarchy
+- [ ] **X.0 Parent Task Title**
+    - **Methodology:**
+        - **Context Protocol:** ...
+        - **Rationale:** ...
+    - [ ] **X.Y Sub-Task Title**
+        - **Task Brief:**
+            - **LLM Persona:** A specific role for the AI (e.g., "Lead Engineer," "Critical Design Analyst").
+            - **Required Context:** A list of the exact files (`@filename.md`) the AI must read to have the full context for this specific task.
+            - **Instructions:** A numbered list of clear, unambiguous steps the AI must follow.
+            - **Output:** A description of the primary artifact(s) to be created or modified.
 
-## Quality Assurance Integration
-For complex analytical tasks, include these elements:
-- **Assumption validation steps** at task start
-- **Methodology verification** before execution begins
-- **Sample validation** for data analysis tasks (show examples before bulk processing)
-- **Quality checkpoints** at logical phase breakpoints
-- **User approval gates** for significant analytical decisions
-- **Be explicit with the plan's steps** - make sure it is clear enough from the plan what resources (type and where to look) should be covered, what outputs should be created, and what synthesis should occour during each step along the way.
+## 3. Task Implementation Protocol
 
-### Enhanced Task Structure Template (for Complex Analysis)
-- [ ] 1.0 Validate Approach & Assumptions
-    - [ ] 1.1 Surface and validate assumptions with user
-    - [ ] 1.2 Present methodology for user approval
-    - [ ] 1.3 Show sample decisions if applicable
-- [ ] 2.0 Execute with Quality Checkpoints
-    - [ ] 2.1 [Phase 1 work]
-    - [ ] 2.2 [Quality checkpoint: verify direction before Phase 2]
-    - [ ] 2.3 [Phase 2 work]
-- [ ] 3.0 Verify and Deliver Results
+The AI executing the tasks MUST adhere to the `Context Protocol` defined for the current phase.
 
-### Task Implementation
-- One sub-task at a time: Do NOT start the next sub‑task until you ask the user for permission and they say "yes" or "y"
-- You can skip asking permission if the user says "always yes" or "-ay" explicitly
-- Completion protocol:
-- When you finish a sub‑task, immediately mark it as completed by changing [ ] to [x].
-- If all subtasks underneath a parent task are now [x], mark the parent task as completed, let the user know and proceed to the next task
-- If all tasks are finished, let the user know and ask what the next task should be
-- Summarize what was accomplished in the parent task
-
-### Task List Maintenance
-- Update the task list as you work:
-    - Mark tasks and subtasks as completed ([x]) per the protocol above.
-    - Add new tasks as they emerge.
-- Maintain the "Relevant Files/Context" section:
-    - List every file created or modified.
-    - Give each file a one‑line description of its purpose.
-- Before starting work, check which sub‑task is next.
-- After implementing a sub‑task, update the file and then pause for user approval.
-- Make sure to always revisit and update the plan according to the user current intent. For example: 
-    - The user asks help with product research
-    - You device a plan for that
-    - Going over the plan you relaize that the user actually needs help discovering what to focus the research on
-    - Update the plan so there are relevant steps before the research tasks that assists in that intent (i.e. research focus discovery)
+*   **Completion:** When all sub-tasks underneath a parent task are `[x]`, mark the parent task as `[x]`.
+*   **Handoff:** After completing a task or phase, summarize the key accomplishments and outcomes before proceeding.
 
 
-## Interaction Model
-The process explicitly requires a pause after generating parent tasks to get user confirmation ("Go") before proceeding to generate the detailed sub-tasks. This ensures the high-level plan aligns with user expectations before diving into details.
+## 4. Quality Assurance
+For complex analytical tasks, the plan should integrate quality gates.
+- **Assumption Validation:** Explicit steps to validate assumptions with the user.
+- **Methodology Verification:** Present the approach for user approval before execution.
+- **Sample Validation:** For tasks involving complex data transformation or generation, show a small, representative sample of the output for user approval before processing the full set.
+- **Quality Checkpoints:** Define logical break points to verify direction before proceeding to the next phase.
 
-## Target Audience
-Assume the primary reader of the task list is a junior PM who will implement the plan.
+## 5. The Plan as a Living Document
+
+This strategic plan is not static. It must be revisited and updated continuously to reflect new insights and changes in user intent.
+
+- **Continuous Maintenance:** The "Relevant Files/Context" section must be kept up-to-date as new artifacts are created.
+- **Intent-Driven Adaptation:** The AI planner is responsible for recognizing when the user's goal has shifted and must proactively suggest updates to the plan to realign with the new direction. 
