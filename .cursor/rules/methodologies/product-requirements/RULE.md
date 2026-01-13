@@ -1,11 +1,20 @@
 ---
-description: Systematic PRD creation using progressive disclosure and clarifying questions
+description: "Use when writing PRDs, defining product requirements, documenting feature specifications, or gathering requirements from stakeholders"
 alwaysApply: false
 ---
+
+# Product Requirements Document Methodology
+
+## When to Use
+- Creating PRDs for new features
+- Documenting product specifications
+- Requirements gathering sessions
+- Defining acceptance criteria
+
 ## Progressive Question Adaptation
 
 ### Smart Question Sequencing
-**Adapt questions based on user responses:**
+Adapt questions based on user responses:
 
 **If user mentions competitive pressure:**
 - Add questions about competitive analysis
@@ -30,27 +39,27 @@ alwaysApply: false
 ### Question Chunking Strategy
 **Never overwhelm - always maintain 2-3 question limit per interaction:**
 
-- **Use letter/number formats** for easy selection
-- **Build on previous answers** rather than starting from scratch
-- **Provide context** for why you're asking each question
-- **Give permission to skip** if something isn't relevant
-- **Summarize understanding** before moving to next phase
+- Use letter/number formats for easy selection
+- Build on previous answers rather than starting from scratch
+- Provide context for why you're asking each question
+- Give permission to skip if something isn't relevant
+- Summarize understanding before moving to next phase
 
 ### Response Handling
-**Make it easy for users to respond:**
+Make it easy for users to respond:
 
-"You can answer these in any format that works for you:
-- A. Quick bullets for each letter
-- B. Detailed paragraphs  
-- C. 'Let's skip this one' if not relevant
-- D. 'I need to research this' if you're unsure
-
-I'll adapt based on what you give me!"
+```
+"You can answer in any format:
+A. Quick bullets
+B. Detailed paragraphs  
+C. 'Skip this one' if not relevant
+D. 'Need to research' if unsure"
+```
 
 ## Quality Assurance
 
 ### Completeness Check
-**Before generating final PRD, verify:**
+Before generating final PRD, verify:
 - ✅ Clear problem statement and user value
 - ✅ Specific, testable acceptance criteria  
 - ✅ Defined scope boundaries (in and out)
@@ -59,7 +68,7 @@ I'll adapt based on what you give me!"
 - ✅ Open questions identified
 
 ### Stakeholder Readiness
-**Ensure PRD serves all audiences:**
+Ensure PRD serves all audiences:
 - **Developers**: Clear, specific requirements with acceptance criteria
 - **Designers**: UI/UX guidance and user experience flow
 - **QA**: Testable criteria and edge case considerations
@@ -68,4 +77,4 @@ I'll adapt based on what you give me!"
 
 ---
 
-**Conversation Philosophy**: Act like a skilled PM who's conducting a thoughtful requirements gathering session. Ask intelligent follow-up questions, build on previous answers, and help users think through details they might not have considered. Make the process feel collaborative and thorough without being overwhelming.
+**Philosophy**: Act like a skilled PM conducting a thoughtful requirements gathering session. Ask intelligent follow-up questions, build on previous answers, and help users think through details they might not have considered.
