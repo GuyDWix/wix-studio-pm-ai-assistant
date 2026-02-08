@@ -75,6 +75,102 @@ Every claim in the final output must have:
 - **Evidence type**: Direct quote OR observation
 - **Source reference**: Which transcript/interview
 
+---
+
+## MANDATORY Verification Protocol
+
+> **This section is REQUIRED, not optional. Do not skip these steps.**
+
+### Gate 1: Transcript Search Before Synthesis
+
+Before writing ANY synthesis document, you MUST:
+
+1. **Search each transcript file for actual user speech**
+2. **Use grep/search for distinctive phrases** from any claimed quote
+3. **Document what you find** in `transcript-validation.md`
+
+```bash
+# Example verification searches:
+grep -i "twice as productive" "Paul Tiernan [Carmel].html"
+grep -i "40% slower" "Jolene (Miri).html"
+grep -i "very ugly" "Pablo Toazza [Jonathan].html"
+```
+
+### Gate 2: Red Flag Pattern Detection
+
+**STOP and reclassify as OBSERVATION (not quote) if you see these patterns:**
+
+| Pattern in Source | What It Means | Action |
+|-------------------|---------------|--------|
+| "She noted that..." | Interviewer summary | Mark `isDirectQuote: false` |
+| "He mentioned..." | Interviewer summary | Mark `isDirectQuote: false` |
+| "The user said that..." | Interviewer summary | Mark `isDirectQuote: false` |
+| "[Name] reported..." | Interviewer summary | Mark `isDirectQuote: false` |
+| "[Name] emphasized that..." | Interviewer summary | Mark `isDirectQuote: false` |
+| Third-person framing | Interviewer summary | Mark `isDirectQuote: false` |
+| Polished/clean language | Likely paraphrased | Verify against transcript |
+| Found in "Summary" section | Interviewer notes | Search transcript for verbatim |
+
+**Real quotes look like:**
+- First person: "I think...", "We do...", "My process..."
+- Natural speech: filler words, incomplete sentences, corrections
+- Conversational tone with imperfect grammar
+
+### Gate 3: Random Audit Checkpoint
+
+**Before proceeding past synthesis, verify 5 random "quotes":**
+
+1. Pick 5 claims marked as quotes from your analysis
+2. Search the actual transcript file for the exact phrase
+3. If ANY fail verification, audit ALL quotes before continuing
+
+```
+AUDIT LOG:
+□ Quote 1: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+□ Quote 2: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+□ Quote 3: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+□ Quote 4: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+□ Quote 5: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+
+If any = "FOUND AS SUMMARY" or "NOT FOUND" → Full audit required
+```
+
+### Gate 4: Gated Output Order
+
+**You MUST produce outputs in this order:**
+
+```
+1. individual-summaries.md     ← Extract from each interview
+2. transcript-validation.md    ← VERIFY all quotes against transcripts
+   ↓
+   STOP HERE. Review validation results.
+   If >20% of "quotes" are actually summaries → full audit
+   ↓
+3. theme-analysis.md           ← Only after validation passes
+4. executive-synthesis.md      ← Only after validation passes
+5. presentation-component.jsx  ← Only after ALL above complete
+```
+
+**Do NOT create presentation layer until transcript-validation.md is complete and reviewed.**
+
+### Gate 5: Final Integrity Check
+
+Before delivering ANY user research output, run this check:
+
+```
+INTEGRITY CHECK:
+□ Every item marked "quote" has been grep-searched in transcript
+□ No third-person summaries are presented with quotation marks
+□ User counts match actual number of users in source data
+□ Each claim links to specific user(s) with evidence type
+□ transcript-validation.md exists and documents verification status
+□ Random audit checkpoint passed (5/5 verified)
+```
+
+**If any checkbox fails → Do not deliver. Fix first.**
+
+---
+
 ## Data Structure for Transparent Research
 
 ### Recommended Schema
