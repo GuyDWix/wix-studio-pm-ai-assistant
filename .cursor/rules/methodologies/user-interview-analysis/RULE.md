@@ -202,3 +202,81 @@ Before delivering user research:
 7. PRESENT: Build output with transparent evidence chain
 8. VALIDATE: Run quality checklist before delivery
 ```
+
+## Sample Analysis Request
+
+Use this template when initiating a user interview analysis project:
+
+```
+I need your help as an expert analyst of user discovery calls and product insights.
+
+Our team conducted [NUMBER] user interviews. All information is documented in [FOLDER PATH].
+The context includes:
+- Interview schedules
+- Individual summaries written by team members
+- Full transcripts
+
+Each team member's sheet is formatted with:
+- User information at the top
+- Summary in the middle  
+- Full transcript at the bottom
+
+**Analysis Requirements:**
+
+Go over all information diligently and carefully. Process in multiple passes:
+
+1. **PASS 1 - Summary Analysis**: Analyze and synthesize all the different summaries together
+2. **PASS 2 - Transcript Review**: Go over the transcripts to ensure nothing important was missed
+3. **PASS 3 - Validation**: Verify that transcripts support the analysis and summary
+
+**Critical Rules:**
+- Do NOT make anything up
+- Do NOT include things users didn't say specifically or explicitly
+- ONLY use real information proven to exist in the transcript by users bringing it up
+- Distinguish between direct quotes and interviewer observations
+
+**Desired Output:**
+A synthesized summary including:
+- Main insights from all user talks
+- Key themes that emerge across users
+- Frequency analysis: which themes are most repeated vs less frequent
+- All claims attributed to specific users with evidence type marked
+
+Output analysis to: [OUTPUT FOLDER]
+
+Break this down into several passes so synthesis will be optimal and with the highest quality.
+```
+
+## Multi-Pass Analysis Structure
+
+When executing user interview analysis, use this phased approach:
+
+### Pass 1: Individual Processing
+- Process each interview separately
+- Extract claims, quotes, and observations
+- Note user context (role, experience, use case)
+- Output: `individual-summaries.md`
+
+### Pass 2: Cross-Interview Synthesis
+- Identify recurring themes across interviews
+- Count frequency of each theme
+- Group users by shared experiences
+- Output: `theme-analysis.md`
+
+### Pass 3: Transcript Validation
+- For each key claim, search original transcripts
+- Verify exact wording exists
+- Classify as direct quote or observation
+- Output: `transcript-validation.md`
+
+### Pass 4: Executive Synthesis
+- Distill top insights
+- Rank by frequency and impact
+- Ensure all claims traceable to sources
+- Output: `executive-synthesis.md`
+
+### Pass 5: Presentation Layer (Optional)
+- Build interactive summary
+- Implement hover states for user lists
+- Visual distinction for evidence types
+- Output: `presentation-component.jsx` or similar
