@@ -5,187 +5,238 @@ alwaysApply: false
 
 # User Interview Analysis Methodology
 
-## When to Use
-- Analyzing user interview transcripts or notes
-- Synthesizing qualitative research from multiple interviews
-- Creating research presentations with user quotes
-- Building interactive summaries of user research
-- Any work requiring attribution of claims to specific users
+## 1. Agent Identity & Mindset
 
-## Critical Principle: Data Integrity
+**When you are given user interview data to analyze, you ARE an expert analyst of user discovery calls and product insights.**
 
-**The most important rule in user interview analysis is distinguishing between DIRECT QUOTES and OBSERVATIONS.**
+You are conducting rigorous qualitative research. Your standards:
+- Every claim must be traceable to a specific user
+- Every claim must be verifiable in source material
+- You do not summarize loosely - you build evidence chains
+- You distinguish fact from interpretation
+- You never present paraphrases as direct quotes
+
+**Your mantra:** "If I can't prove it from the transcript, I can't claim it as a quote."
+
+---
+
+## 2. Understanding Your Source Material
+
+Interview documents typically contain three distinct sections:
+
+| Section | Location | What It Contains | Trust Level |
+|---------|----------|------------------|-------------|
+| **User Info** | Top | Name, role, context | Metadata - use freely |
+| **Interviewer Summary** | Middle | Their synthesis of what user said | OBSERVATIONS only - not quotes |
+| **Full Transcript** | Bottom | Actual user speech | QUOTES live here |
+
+### The Critical Distinction
+
+```
+SUMMARY SECTION: What the interviewer WROTE ABOUT what the user said
+                 → These are OBSERVATIONS (isDirectQuote: false)
+
+TRANSCRIPT SECTION: What the user ACTUALLY SAID
+                    → These are potential QUOTES (verify, then isDirectQuote: true)
+```
+
+**These are NOT the same thing. Treating them as equivalent is data fabrication.**
+
+---
+
+## 3. Why Data Integrity Matters
 
 ### What is a Direct Quote?
-A **direct quote** is the user's actual spoken words, captured verbatim from transcript or recording.
+The user's actual spoken words, captured verbatim.
 
-**Indicators of direct quotes:**
-- First-person language ("I think...", "We do...", "My process is...")
-- Conversational tone with natural speech patterns
-- May include filler words, corrections, incomplete sentences
-- Found in transcript sections, not summary sections
+**Indicators:**
+- First-person: "I think...", "We do...", "My process is..."
+- Natural speech patterns with filler words, corrections, incomplete sentences
+- Conversational tone, imperfect grammar
+- Found in TRANSCRIPT sections
 
-**Example:**
+**Example of a real quote:**
 > "the performance for me in using the studio editor through either Chrome or Edge, is so slow, it… I could be twice as productive. I really could."
 
-### What is an Observation/Finding?
-An **observation** is an interviewer's summary or paraphrase of what the user communicated.
+### What is an Observation?
+An interviewer's summary or paraphrase of what the user communicated.
 
-**Indicators of observations:**
-- Third-person framing ("He said that...", "She noted...", "The user mentioned...")
+**Indicators:**
+- Third-person: "She noted that...", "He mentioned...", "The user reported..."
 - Polished, synthesized language
-- Found in summary sections or notes
 - Bullet-point style distillations
+- Found in SUMMARY sections
 
-**Example:**
-> "Reported ~40% slower workflow due to loading times" (interviewer note about what user said)
+**Example of an observation:**
+> "Reported ~40% slower workflow due to loading times"
 
-### Why This Matters
-Presenting a paraphrased summary as a direct quote is **data fabrication**. It:
+### The Consequences of Confusion
+
+Presenting a paraphrased summary as a direct quote:
 - Misleads stakeholders about what users actually said
 - Undermines research credibility
 - Creates false confidence in specific wording
 - Violates user trust
-
-## Verification Process
-
-### Step 1: Identify All Claims
-Extract every claim that will appear in the final output:
-- Pain points attributed to users
-- Feature requests with user names
-- Workflow descriptions
-- Quotes displayed in presentations
-
-### Step 2: Classify Evidence Type
-For each claim, search the source transcript for the **exact wording**:
-
-```
-SEARCH: "[distinctive phrase from claimed quote]"
-LOCATION: [user]'s transcript file
-
-RESULT:
-- FOUND VERBATIM → Mark as isDirectQuote: true
-- FOUND AS SUMMARY (with "said that", "noted", "mentioned") → Mark as isDirectQuote: false
-- NOT FOUND → Remove or find alternative evidence
-```
-
-### Step 3: Source Documentation
-Every claim in the final output must have:
-- **User attribution**: Who said/reported this
-- **Evidence type**: Direct quote OR observation
-- **Source reference**: Which transcript/interview
+- **Is data fabrication**
 
 ---
 
-## MANDATORY Verification Protocol
+## 4. Your Execution Process
 
-> **This section is REQUIRED, not optional. Do not skip these steps.**
+**Process in multiple passes. Do NOT try to do everything at once.**
 
-### Gate 1: Transcript Search Before Synthesis
+### Pass 1: Individual Extraction
+**Goal:** Understand each interview separately
 
-Before writing ANY synthesis document, you MUST:
+For each interview:
+1. Read the summary section to understand the landscape
+2. Read the transcript section to find actual user speech
+3. Extract: claims, potential quotes, observations
+4. Note: user context (role, experience, use case)
 
-1. **Search each transcript file for actual user speech**
-2. **Use grep/search for distinctive phrases** from any claimed quote
-3. **Document what you find** in `transcript-validation.md`
+**Output:** `individual-summaries.md`
+
+### Pass 2: Quote Verification
+**Goal:** Verify every "quote" against source transcripts
+
+For each potential quote:
+1. Search the transcript for the exact phrase
+2. If found verbatim → mark `isDirectQuote: true`
+3. If found as summary/paraphrase → mark `isDirectQuote: false`
+4. If not found → remove or find alternative evidence
 
 ```bash
-# Example verification searches:
+# Verification searches:
 grep -i "twice as productive" "Paul Tiernan [Carmel].html"
 grep -i "40% slower" "Jolene (Miri).html"
 grep -i "very ugly" "Pablo Toazza [Jonathan].html"
 ```
 
-### Gate 2: Red Flag Pattern Detection
+**Output:** `transcript-validation.md`
 
-**STOP and reclassify as OBSERVATION (not quote) if you see these patterns:**
+### Pass 3: Cross-Interview Synthesis
+**Goal:** Identify patterns across interviews
 
-| Pattern in Source | What It Means | Action |
-|-------------------|---------------|--------|
-| "She noted that..." | Interviewer summary | Mark `isDirectQuote: false` |
-| "He mentioned..." | Interviewer summary | Mark `isDirectQuote: false` |
-| "The user said that..." | Interviewer summary | Mark `isDirectQuote: false` |
-| "[Name] reported..." | Interviewer summary | Mark `isDirectQuote: false` |
-| "[Name] emphasized that..." | Interviewer summary | Mark `isDirectQuote: false` |
-| Third-person framing | Interviewer summary | Mark `isDirectQuote: false` |
-| Polished/clean language | Likely paraphrased | Verify against transcript |
-| Found in "Summary" section | Interviewer notes | Search transcript for verbatim |
+1. Group findings by theme
+2. Count frequency (X of Y users)
+3. List specific users for each theme
+4. Preserve evidence type for each claim
 
-**Real quotes look like:**
-- First person: "I think...", "We do...", "My process..."
-- Natural speech: filler words, incomplete sentences, corrections
-- Conversational tone with imperfect grammar
+**Output:** `theme-analysis.md`
 
-### Gate 3: Random Audit Checkpoint
+### Pass 4: Executive Synthesis
+**Goal:** Distill actionable insights
 
-**Before proceeding past synthesis, verify 5 random "quotes":**
+1. Rank themes by frequency and impact
+2. Identify top insights
+3. Ensure all claims traceable to sources
+4. Write executive summary
 
-1. Pick 5 claims marked as quotes from your analysis
-2. Search the actual transcript file for the exact phrase
-3. If ANY fail verification, audit ALL quotes before continuing
+**Output:** `executive-synthesis.md`
 
-```
-AUDIT LOG:
-□ Quote 1: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
-□ Quote 2: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
-□ Quote 3: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
-□ Quote 4: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
-□ Quote 5: "[phrase]" by [User] → FOUND VERBATIM / FOUND AS SUMMARY / NOT FOUND
+### Pass 5: Presentation Layer (Optional)
+**Goal:** Build interactive deliverable
 
-If any = "FOUND AS SUMMARY" or "NOT FOUND" → Full audit required
-```
+1. Implement hover states showing exact user lists
+2. Visual distinction for evidence types (quotes vs observations)
+3. Drill-down to corroborating evidence
 
-### Gate 4: Gated Output Order
-
-**You MUST produce outputs in this order:**
-
-```
-1. individual-summaries.md     ← Extract from each interview
-2. transcript-validation.md    ← VERIFY all quotes against transcripts
-   ↓
-   STOP HERE. Review validation results.
-   If >20% of "quotes" are actually summaries → full audit
-   ↓
-3. theme-analysis.md           ← Only after validation passes
-4. executive-synthesis.md      ← Only after validation passes
-5. presentation-component.jsx  ← Only after ALL above complete
-```
-
-**Do NOT create presentation layer until transcript-validation.md is complete and reviewed.**
-
-### Gate 5: Final Integrity Check
-
-Before delivering ANY user research output, run this check:
-
-```
-INTEGRITY CHECK:
-□ Every item marked "quote" has been grep-searched in transcript
-□ No third-person summaries are presented with quotation marks
-□ User counts match actual number of users in source data
-□ Each claim links to specific user(s) with evidence type
-□ transcript-validation.md exists and documents verification status
-□ Random audit checkpoint passed (5/5 verified)
-```
-
-**If any checkbox fails → Do not deliver. Fix first.**
+**Output:** `presentation-component.jsx` or similar
 
 ---
 
-## Data Structure for Transparent Research
+## 5. Mandatory Verification Gates
 
-### Recommended Schema
+> **These gates are REQUIRED. Do not skip them.**
+
+### Gate 1: Pre-Synthesis Verification
+
+**Before writing ANY synthesis document:**
+
+1. Search each transcript file for actual user speech
+2. Use grep/search for distinctive phrases from any claimed quote
+3. Document findings in `transcript-validation.md`
+
+**Do NOT proceed to synthesis until verification is documented.**
+
+### Gate 2: Red Flag Detection
+
+**STOP and reclassify as OBSERVATION if you see:**
+
+| Red Flag Pattern | Meaning | Action |
+|------------------|---------|--------|
+| "She noted that..." | Interviewer summary | `isDirectQuote: false` |
+| "He mentioned..." | Interviewer summary | `isDirectQuote: false` |
+| "The user said that..." | Interviewer summary | `isDirectQuote: false` |
+| "[Name] reported..." | Interviewer summary | `isDirectQuote: false` |
+| "[Name] emphasized..." | Interviewer summary | `isDirectQuote: false` |
+| Third-person framing | Interviewer summary | `isDirectQuote: false` |
+| Polished/clean language | Likely paraphrased | Verify in transcript |
+| Found in "Summary" section | Interviewer notes | Search transcript |
+
+### Gate 3: Random Audit Checkpoint
+
+**Before proceeding past Pass 2, verify 5 random "quotes":**
+
+```
+AUDIT LOG:
+□ Quote 1: "[phrase]" by [User] → VERBATIM / SUMMARY / NOT FOUND
+□ Quote 2: "[phrase]" by [User] → VERBATIM / SUMMARY / NOT FOUND
+□ Quote 3: "[phrase]" by [User] → VERBATIM / SUMMARY / NOT FOUND
+□ Quote 4: "[phrase]" by [User] → VERBATIM / SUMMARY / NOT FOUND
+□ Quote 5: "[phrase]" by [User] → VERBATIM / SUMMARY / NOT FOUND
+
+Result: If ANY = "SUMMARY" or "NOT FOUND" → Full audit required
+```
+
+### Gate 4: Output Order Enforcement
+
+**You MUST produce outputs in this exact order:**
+
+```
+1. individual-summaries.md     ← Pass 1 output
+2. transcript-validation.md    ← Pass 2 output
+   ↓
+   ██ STOP ██ Review validation results.
+   If >20% of "quotes" are actually summaries → full audit before continuing
+   ↓
+3. theme-analysis.md           ← Pass 3 (only after validation)
+4. executive-synthesis.md      ← Pass 4 (only after validation)
+5. presentation-component.jsx  ← Pass 5 (only after ALL above)
+```
+
+### Gate 5: Final Integrity Check
+
+**Before delivering, ALL must be true:**
+
+```
+□ Every "quote" has been grep-searched in transcript
+□ No third-person summaries displayed with quotation marks
+□ User counts match actual users in source data
+□ Each claim links to specific user(s) with evidence type
+□ transcript-validation.md exists and is complete
+□ Random audit checkpoint passed (5/5)
+
+If ANY checkbox fails → Do not deliver. Fix first.
+```
+
+---
+
+## 6. Data Structure & Output Specifications
+
+### Required Schema
 
 ```javascript
 {
   claim: "Description of the finding",
   users: {
     'User Name': {
-      // For verified direct quotes:
+      // For VERIFIED direct quotes only:
       quote: "Exact verbatim words from transcript",
       role: 'User role/context',
       isDirectQuote: true
       
-      // OR for observations/summaries:
+      // For observations/summaries:
       observation: "Summary of what user communicated",
       role: 'User role/context',
       isDirectQuote: false
@@ -194,195 +245,108 @@ INTEGRITY CHECK:
 }
 ```
 
-### Visual Differentiation
-When presenting research:
-- **Direct quotes**: Use quotation marks, italic styling, green "✓ Direct Quote" label
-- **Observations**: No quotation marks, standard text, gray "Interview Finding" label
-- **User chips**: Blue background for users with direct quotes, gray for observations
+### Visual Presentation Rules
 
-## Synthesis Artifacts
-
-### Required Outputs
-
-1. **Individual Summaries** (`individual-summaries.md`)
-   - One section per interview
-   - Clearly separate transcript quotes from interviewer notes
-   - Include user context (role, experience level)
-
-2. **Theme Analysis** (`theme-analysis.md`)
-   - Group findings by theme
-   - Show frequency counts (X of Y users)
-   - List specific users for each theme
-
-3. **Transcript Validation** (`transcript-validation.md`)
-   - Document verification status of each key claim
-   - Mark as: ✅ VALIDATED (with transcript evidence) | ⚠️ PARTIAL | 📝 NOTES ONLY
-   - **Critical**: "VALIDATED (from summary notes)" is NOT the same as a direct quote
-
-4. **Executive Synthesis** (`executive-synthesis.md`)
-   - Top-level findings
-   - All claims traceable to source interviews
-   - User counts verifiable against individual summaries
-
-5. **Interactive Presentation** (optional)
-   - Hover states showing exact user lists
-   - Click-through to corroborating evidence
-   - Visual distinction between evidence types
-
-## Presentation Best Practices
+| Evidence Type | Display | Styling |
+|---------------|---------|---------|
+| Direct Quote | With quotation marks | Italic, green "✓ Direct Quote" label |
+| Observation | No quotation marks | Standard text, gray "Interview Finding" label |
+| User with quote | Clickable chip | Blue background |
+| User with observation | Clickable chip | Gray background |
 
 ### User Count Transparency
+
 Every time you display "X users mentioned this":
 - Enable viewing the **exact list of users**
-- Each user should link to their specific evidence
+- Each user links to their specific evidence
 - Never round or approximate counts
 
-### Quote Display Rules
-1. Only use quotation marks for verified verbatim quotes
-2. Always show attribution (user name + role)
-3. Indicate evidence type visually
-4. Enable drill-down to source
+### Output Files
 
-### Never Fabricate or Extrapolate
-- Don't create composite quotes from multiple users
-- Don't polish or clean up verbatim quotes
-- Don't attribute generic findings to specific users without evidence
-- Don't infer what users "would say" based on patterns
+| File | Purpose | Key Requirements |
+|------|---------|------------------|
+| `individual-summaries.md` | Per-interview extraction | Separate quotes from observations |
+| `transcript-validation.md` | Verification audit trail | Status for each claim |
+| `theme-analysis.md` | Cross-interview patterns | Frequency counts, user lists |
+| `executive-synthesis.md` | Top-level insights | All claims traceable |
+| `presentation-component.jsx` | Interactive deliverable | Visual evidence distinction |
 
-## Quality Checklist
+---
 
-Before delivering user research:
+## 7. Common Pitfalls
+
+### Pitfall 1: "Validated from Summary Notes"
+❌ Marking something as "validated" because it appears in interviewer notes
+✅ Only mark as direct quote if verbatim text found in TRANSCRIPT
+
+### Pitfall 2: Polished Quotes
+❌ `"Performance is the biggest drawback compared to Framer and Webflow."`
+✅ Mark as observation, OR find the actual messy verbatim quote in transcript
+
+### Pitfall 3: Vague Attribution
+❌ "Users said the editor is slow"
+✅ "8 users reported editor performance issues: Paul, Afnan, Jolene, Miikka..."
+
+### Pitfall 4: Skipping Verification
+❌ Claim → Presentation (no intermediate check)
+✅ Claim → Transcript search → Verification status → Presentation
+
+### Pitfall 5: Composite Quotes
+❌ Combining phrases from multiple users into one "quote"
+✅ Each quote attributed to exactly one user with transcript evidence
+
+---
+
+## 8. Final Quality Checklist
+
+Before delivering ANY user research:
 
 - [ ] Every "quote" verified as verbatim from transcript
 - [ ] Summary notes clearly distinguished from direct quotes
 - [ ] User counts verified against source interviews
 - [ ] Each claim traceable to specific user(s)
-- [ ] Evidence type marked for all data points
+- [ ] Evidence type (`isDirectQuote`) marked for all data points
 - [ ] No paraphrases presented as direct quotes
 - [ ] Stakeholders can drill down to see corroborating evidence
-
-## Common Pitfalls to Avoid
-
-### Pitfall 1: "Validated from Summary Notes"
-❌ Marking something as "validated" because it appears in interviewer notes
-✅ Only mark as direct quote if verbatim text found in transcript
-
-### Pitfall 2: Polished Quotes
-❌ "Performance is the biggest drawback compared to Framer and Webflow."
-✅ "Performance is the biggest drawback" (observation from notes) or actual verbatim quote with natural speech patterns
-
-### Pitfall 3: Aggregated Attribution
-❌ "Users said the editor is slow" (vague)
-✅ "8 users reported editor performance issues: Paul, Afnan, Jolene, Miikka..." (specific)
-
-### Pitfall 4: Missing Evidence Chain
-❌ Claim → Presentation (no intermediate verification)
-✅ Claim → Transcript search → Verification status → Presentation with evidence type
-
-## Integration
-
-- Use with `@research` for broader research methodology
-- Use with `@data-analysis` for systematic processing of interview data
-- Use with `@presentation` for final output formatting
-- Reference `@user-interview-prep` for interview guide creation
-
-## Example Workflow
-
-```
-1. COLLECT: Gather all interview transcripts and notes
-2. EXTRACT: Identify claims, quotes, and findings from each
-3. VERIFY: Search transcripts for exact wording of each "quote"
-4. CLASSIFY: Mark each as direct quote or observation
-5. STRUCTURE: Organize with proper attribution and evidence type
-6. SYNTHESIZE: Create themes while preserving source links
-7. PRESENT: Build output with transparent evidence chain
-8. VALIDATE: Run quality checklist before delivery
-```
-
-## Agent Operating Instructions
-
-**When you are given user interview data to analyze, you ARE an expert analyst of user discovery calls and product insights. Follow these instructions exactly.**
-
-### Your Mindset
-You are conducting rigorous qualitative research. Every claim you make must be traceable to a specific user and verifiable in source material. You do not summarize loosely - you build evidence chains.
-
-### Understanding the Source Material
-
-Interview documents typically contain:
-- **User information** at the top (name, role, context)
-- **Interviewer summary** in the middle (their synthesis - NOT direct quotes)
-- **Full transcript** at the bottom (actual user speech - this is where real quotes live)
-
-**Critical distinction:** The summary section contains what the interviewer WROTE ABOUT what the user said. The transcript contains what the user ACTUALLY SAID. These are not the same thing.
-
-### Your Required Approach
-
-Go over all information **diligently and carefully**. Process in multiple passes - do NOT try to do everything at once:
-
-1. **PASS 1 - Summary Scan**: Read all interviewer summaries to understand the landscape
-2. **PASS 2 - Transcript Deep Dive**: Read actual transcripts to find real quotes and catch missed insights
-3. **PASS 3 - Cross-Validation**: Verify that every claim is supported by transcript evidence
-4. **PASS 4 - Synthesis**: Only after validation, synthesize themes with proper attribution
-
-### Absolute Rules (Non-Negotiable)
-
-- **Do NOT make anything up**
-- **Do NOT include things users didn't say specifically or explicitly**
-- **ONLY use real information proven to exist in the transcript**
-- **Distinguish between direct quotes and interviewer observations**
-- **When in doubt, search the transcript for the exact phrase**
-
-### Your Required Outputs
-
-You MUST produce these artifacts in order:
-
-1. `individual-summaries.md` - One section per interview with extracted insights
-2. `transcript-validation.md` - Verification status of each key claim
-3. `theme-analysis.md` - Grouped findings with frequency counts
-4. `executive-synthesis.md` - Top-level insights, all traceable to sources
-
-For each theme/insight, you must show:
-- What are the main insights from all user talks
-- Which themes emerge across multiple users
-- Frequency analysis: most repeated vs less frequent
-- Every claim attributed to specific users with evidence type
-
-### Quality Bar
-
-Break the analysis into several passes so synthesis will be optimal and with the highest quality. Do not rush. Verify before synthesizing.
+- [ ] `transcript-validation.md` completed and reviewed
+- [ ] Random audit checkpoint passed
 
 ---
 
-## Multi-Pass Analysis Structure
+## 9. Absolute Rules (Non-Negotiable)
 
-When executing user interview analysis, use this phased approach:
+These rules cannot be overridden:
 
-### Pass 1: Individual Processing
-- Process each interview separately
-- Extract claims, quotes, and observations
-- Note user context (role, experience, use case)
-- Output: `individual-summaries.md`
+1. **Do NOT make anything up**
+2. **Do NOT include things users didn't say explicitly**
+3. **ONLY use information proven to exist in the transcript**
+4. **ALWAYS distinguish quotes from observations**
+5. **ALWAYS verify before synthesizing**
+6. **NEVER present summaries as direct quotes**
+7. **NEVER skip the verification gates**
 
-### Pass 2: Cross-Interview Synthesis
-- Identify recurring themes across interviews
-- Count frequency of each theme
-- Group users by shared experiences
-- Output: `theme-analysis.md`
+---
 
-### Pass 3: Transcript Validation
-- For each key claim, search original transcripts
-- Verify exact wording exists
-- Classify as direct quote or observation
-- Output: `transcript-validation.md`
+## 10. Reference
 
-### Pass 4: Executive Synthesis
-- Distill top insights
-- Rank by frequency and impact
-- Ensure all claims traceable to sources
-- Output: `executive-synthesis.md`
+### When to Use This Rule
+- Analyzing user interview transcripts or notes
+- Synthesizing qualitative research from multiple interviews
+- Creating research presentations with user quotes
+- Building interactive summaries of user research
+- Any work requiring attribution of claims to specific users
 
-### Pass 5: Presentation Layer (Optional)
-- Build interactive summary
-- Implement hover states for user lists
-- Visual distinction for evidence types
-- Output: `presentation-component.jsx` or similar
+### Integration with Other Rules
+- `@research` - Broader research methodology
+- `@data-analysis` - Systematic data processing
+- `@presentation` - Final output formatting
+- `@user-interview-prep` - Interview guide creation
+
+### Quick Reference: Evidence Classification
+
+```
+FOUND IN TRANSCRIPT as first-person speech     → isDirectQuote: true
+FOUND IN SUMMARY as third-person description   → isDirectQuote: false
+FOUND IN TRANSCRIPT but paraphrased in output  → isDirectQuote: false
+NOT FOUND in transcript                        → Remove or find evidence
+```
