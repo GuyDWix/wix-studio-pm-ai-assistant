@@ -5,7 +5,29 @@ alwaysApply: false
 
 # User Interview Analysis Methodology
 
-## 1. Agent Identity & Mindset
+## 1. Required Context: Read First
+
+**Before starting ANY user interview analysis, read these shared knowledge files:**
+
+| File | Why It Matters |
+|------|----------------|
+| `@shared-knowledge/company-fundamentals.md` | Company mission, target audiences, strategic pillars. Grounds your analysis in what matters to the business. |
+| `@shared-knowledge/studio-user-types.md` | User archetype framework (Executor, Output Oriented, Creative Seeker). Use these to categorize and contextualize user feedback. |
+
+### How to Use This Context
+
+1. **Archetype Mapping**: When you identify user behaviors/pain points, map them to the archetypes:
+   - **Executor** (Fidelity-Driven): Cares about precision, control, Figma-to-build workflow
+   - **Output Oriented** (Velocity-Driven): Cares about speed, templates, good-enough-fast
+   - **Creative Seeker** (Inspiration-Driven): Cares about starting points, overcoming blank canvas
+
+2. **Strategic Alignment**: When synthesizing insights, note which findings align with company strategic pillars (Design, AI, Quality, Open Platform)
+
+3. **Audience Verification**: Confirm interview participants match target audience (Professional Creators building for clients vs DIY users)
+
+---
+
+## 2. Agent Identity & Mindset
 
 **When you are given user interview data to analyze, you ARE an expert analyst of user discovery calls and product insights.**
 
@@ -20,7 +42,7 @@ You are conducting rigorous qualitative research. Your standards:
 
 ---
 
-## 2. Understanding Your Source Material
+## 3. Understanding Your Source Material
 
 Interview documents typically contain three distinct sections:
 
@@ -44,7 +66,7 @@ TRANSCRIPT SECTION: What the user ACTUALLY SAID
 
 ---
 
-## 3. Why Data Integrity Matters
+## 4. Why Data Integrity Matters
 
 ### What is a Direct Quote?
 The user's actual spoken words, captured verbatim.
@@ -81,7 +103,7 @@ Presenting a paraphrased summary as a direct quote:
 
 ---
 
-## 4. Your Execution Process
+## 5. Your Execution Process
 
 **Process in multiple passes. Do NOT try to do everything at once.**
 
@@ -121,6 +143,11 @@ grep -i "very ugly" "Pablo Toazza [Jonathan].html"
 2. Count frequency (X of Y users)
 3. List specific users for each theme
 4. Preserve evidence type for each claim
+5. **Map users to archetypes** from `studio-user-types.md`:
+   - Executor (Fidelity-Driven) - precision/control concerns
+   - Output Oriented (Velocity-Driven) - speed/efficiency concerns
+   - Creative Seeker (Inspiration-Driven) - starting point/inspiration concerns
+6. Note which themes align with strategic pillars (Design, AI, Quality, Open Platform)
 
 **Output:** `theme-analysis.md`
 
@@ -129,8 +156,10 @@ grep -i "very ugly" "Pablo Toazza [Jonathan].html"
 
 1. Rank themes by frequency and impact
 2. Identify top insights
-3. Ensure all claims traceable to sources
-4. Write executive summary
+3. **Include archetype distribution** (how many of each type interviewed)
+4. **Note strategic alignment** for key findings
+5. Ensure all claims traceable to sources
+6. Write executive summary
 
 **Output:** `executive-synthesis.md`
 
@@ -145,7 +174,7 @@ grep -i "very ugly" "Pablo Toazza [Jonathan].html"
 
 ---
 
-## 5. Mandatory Verification Gates
+## 6. Mandatory Verification Gates
 
 > **These gates are REQUIRED. Do not skip them.**
 
@@ -222,7 +251,7 @@ If ANY checkbox fails → Do not deliver. Fix first.
 
 ---
 
-## 6. Data Structure & Output Specifications
+## 7. Data Structure & Output Specifications
 
 ### Required Schema
 
@@ -267,13 +296,13 @@ Every time you display "X users mentioned this":
 |------|---------|------------------|
 | `individual-summaries.md` | Per-interview extraction | Separate quotes from observations |
 | `transcript-validation.md` | Verification audit trail | Status for each claim |
-| `theme-analysis.md` | Cross-interview patterns | Frequency counts, user lists |
-| `executive-synthesis.md` | Top-level insights | All claims traceable |
-| `presentation-component.jsx` | Interactive deliverable | Visual evidence distinction |
+| `theme-analysis.md` | Cross-interview patterns | Frequency counts, user lists, archetype mapping |
+| `executive-synthesis.md` | Top-level insights | All claims traceable, archetype distribution |
+| `presentation-component.jsx` | Interactive deliverable | Visual evidence distinction, user list drill-downs |
 
 ---
 
-## 7. Common Pitfalls
+## 8. Common Pitfalls
 
 ### Pitfall 1: "Validated from Summary Notes"
 ❌ Marking something as "validated" because it appears in interviewer notes
@@ -297,7 +326,7 @@ Every time you display "X users mentioned this":
 
 ---
 
-## 8. Final Quality Checklist
+## 9. Final Quality Checklist
 
 Before delivering ANY user research:
 
@@ -313,7 +342,7 @@ Before delivering ANY user research:
 
 ---
 
-## 9. Absolute Rules (Non-Negotiable)
+## 10. Absolute Rules (Non-Negotiable)
 
 These rules cannot be overridden:
 
@@ -327,7 +356,7 @@ These rules cannot be overridden:
 
 ---
 
-## 10. Reference
+## 11. Reference
 
 ### When to Use This Rule
 - Analyzing user interview transcripts or notes
