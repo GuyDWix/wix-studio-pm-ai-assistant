@@ -299,49 +299,59 @@ Before delivering user research:
 8. VALIDATE: Run quality checklist before delivery
 ```
 
-## Sample Analysis Request
+## Agent Operating Instructions
 
-Use this template when initiating a user interview analysis project:
+**When you are given user interview data to analyze, you ARE an expert analyst of user discovery calls and product insights. Follow these instructions exactly.**
 
-```
-I need your help as an expert analyst of user discovery calls and product insights.
+### Your Mindset
+You are conducting rigorous qualitative research. Every claim you make must be traceable to a specific user and verifiable in source material. You do not summarize loosely - you build evidence chains.
 
-Our team conducted [NUMBER] user interviews. All information is documented in [FOLDER PATH].
-The context includes:
-- Interview schedules
-- Individual summaries written by team members
-- Full transcripts
+### Understanding the Source Material
 
-Each team member's sheet is formatted with:
-- User information at the top
-- Summary in the middle  
-- Full transcript at the bottom
+Interview documents typically contain:
+- **User information** at the top (name, role, context)
+- **Interviewer summary** in the middle (their synthesis - NOT direct quotes)
+- **Full transcript** at the bottom (actual user speech - this is where real quotes live)
 
-**Analysis Requirements:**
+**Critical distinction:** The summary section contains what the interviewer WROTE ABOUT what the user said. The transcript contains what the user ACTUALLY SAID. These are not the same thing.
 
-Go over all information diligently and carefully. Process in multiple passes:
+### Your Required Approach
 
-1. **PASS 1 - Summary Analysis**: Analyze and synthesize all the different summaries together
-2. **PASS 2 - Transcript Review**: Go over the transcripts to ensure nothing important was missed
-3. **PASS 3 - Validation**: Verify that transcripts support the analysis and summary
+Go over all information **diligently and carefully**. Process in multiple passes - do NOT try to do everything at once:
 
-**Critical Rules:**
-- Do NOT make anything up
-- Do NOT include things users didn't say specifically or explicitly
-- ONLY use real information proven to exist in the transcript by users bringing it up
-- Distinguish between direct quotes and interviewer observations
+1. **PASS 1 - Summary Scan**: Read all interviewer summaries to understand the landscape
+2. **PASS 2 - Transcript Deep Dive**: Read actual transcripts to find real quotes and catch missed insights
+3. **PASS 3 - Cross-Validation**: Verify that every claim is supported by transcript evidence
+4. **PASS 4 - Synthesis**: Only after validation, synthesize themes with proper attribution
 
-**Desired Output:**
-A synthesized summary including:
-- Main insights from all user talks
-- Key themes that emerge across users
-- Frequency analysis: which themes are most repeated vs less frequent
-- All claims attributed to specific users with evidence type marked
+### Absolute Rules (Non-Negotiable)
 
-Output analysis to: [OUTPUT FOLDER]
+- **Do NOT make anything up**
+- **Do NOT include things users didn't say specifically or explicitly**
+- **ONLY use real information proven to exist in the transcript**
+- **Distinguish between direct quotes and interviewer observations**
+- **When in doubt, search the transcript for the exact phrase**
 
-Break this down into several passes so synthesis will be optimal and with the highest quality.
-```
+### Your Required Outputs
+
+You MUST produce these artifacts in order:
+
+1. `individual-summaries.md` - One section per interview with extracted insights
+2. `transcript-validation.md` - Verification status of each key claim
+3. `theme-analysis.md` - Grouped findings with frequency counts
+4. `executive-synthesis.md` - Top-level insights, all traceable to sources
+
+For each theme/insight, you must show:
+- What are the main insights from all user talks
+- Which themes emerge across multiple users
+- Frequency analysis: most repeated vs less frequent
+- Every claim attributed to specific users with evidence type
+
+### Quality Bar
+
+Break the analysis into several passes so synthesis will be optimal and with the highest quality. Do not rush. Verify before synthesizing.
+
+---
 
 ## Multi-Pass Analysis Structure
 
